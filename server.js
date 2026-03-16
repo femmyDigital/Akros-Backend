@@ -31,7 +31,11 @@ const PORT = process.env.PORT || 3002;
 
 app.use(
   cors({
-    origin: [process.env.CLIENT_URL, "https://akros-frontend.vercel.app"],
+    origin: [
+      process.env.CLIENT_URL,
+      "https://akros-frontend.vercel.app",
+      "https://9g6nk4-3001.csb.app",
+    ],
     methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
     allowedHeaders: [
       "content-Type",
