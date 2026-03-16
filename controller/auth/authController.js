@@ -105,6 +105,8 @@ const loginUser = async (req, res, next) => {
     res
       .cookie("token", token, {
         httpOnly: true,
+        secure: true,
+        sameSite: "none",
         maxAge: age,
       })
       .status(200)
@@ -147,6 +149,8 @@ const logoutUser = (req, res) => {
 const authMiddleware = async (req, res, next) => {
   const token = req.cookies.token;
 
+  console.log(token);
+
   if (!token)
     return res.status(401).json({
       success: false,
@@ -156,7 +160,6 @@ const authMiddleware = async (req, res, next) => {
   try {
     const decode = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
-    console;
     req.user = decode;
     next();
   } catch (error) {
