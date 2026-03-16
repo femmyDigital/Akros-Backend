@@ -13,7 +13,7 @@ const authRouter = require("./route/auth/authRoute");
 const adminRoute = require("./route/admin/adminRoute");
 
 //User
-const walletRouter = require("./route/user/walletRoute");
+// const walletRouter = require("./route/user/walletRoute");
 const paymentRouter = require("./route/user/paymentRoute");
 const purchaseRouter = require("./route/user/purchaseRoute");
 
@@ -51,7 +51,7 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/adminCreditWallet", adminRoute);
 
 //User
-app.use("/api/v1/wallet", walletRouter);
+// app.use("/api/v1/wallet", walletRouter);
 app.use("/api/v1/purchase", purchaseRouter);
 app.use("/api/v1/payment", paymentRouter);
 
