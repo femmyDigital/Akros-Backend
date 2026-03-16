@@ -34,7 +34,7 @@ app.use(
     origin: [
       process.env.CLIENT_URL,
       "https://akros-frontend.vercel.app",
-      "https://9g6nk4-3001.csb.app",
+      "https://pvdkrd-5173.csb.app",
     ],
     methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
     allowedHeaders: [
