@@ -27,7 +27,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: [process.env.CLIENT_URL, "https://akros-backend.onrender.com"],
     methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
     allowedHeaders: [
       "content-Type",
