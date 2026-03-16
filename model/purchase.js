@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const purchaseSchema = new mongoose.Schema(
   {
-    userId: {
+    user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
@@ -34,7 +34,7 @@ const purchaseSchema = new mongoose.Schema(
 
     meta: Object,
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 module.exports = mongoose.model("Purchase", purchaseSchema);

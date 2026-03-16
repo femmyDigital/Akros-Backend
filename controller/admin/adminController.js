@@ -1,11 +1,11 @@
-const Wallet = require("../../model/wallet");
+const Account = require("../../model/account");
 const Transaction = require("../../model/transaction");
 
 const adminCreditWallet = async (req, res, next) => {
   const { userId, amount } = req.body;
 
   try {
-    const wallet = await Wallet.findOne({ userId });
+    const wallet = await Account.findOne({ userId });
 
     if (!wallet) {
       const error = new Error("Wallet Doesn't Exist, Generate");

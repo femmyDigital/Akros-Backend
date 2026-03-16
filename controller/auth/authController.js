@@ -4,7 +4,7 @@ const { nanoid } = require("nanoid");
 require("dotenv").config();
 const crypto = require("crypto");
 const User = require("../../model/user");
-const Wallet = require("../../model/wallet");
+const Account = require("../../model/account");
 const { createVirtualAccount } = require("../../helpers/strowallet");
 
 const signupUser = async (req, res, next) => {
@@ -148,8 +148,6 @@ const logoutUser = (req, res) => {
 //
 const authMiddleware = async (req, res, next) => {
   const token = req.cookies.token;
-
-  console.log(token);
 
   if (!token)
     return res.status(401).json({

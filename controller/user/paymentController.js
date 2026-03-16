@@ -1,10 +1,10 @@
 const Transaction = require("../../model/transaction");
-const Wallet = require("../../model/wallet");
-const WebhookLog = require("../../model/webhookLog");
+const Account = require("../../model/account");
 const verifySignature = require("../../utility/verifyWebhookSignature");
 
 const makePayment = async (req, res, next) => {
   try {
+    const userId = req.user.id;
     const payload = req.body;
     const signature = req.headers["monnify-signature"];
 
@@ -45,16 +45,16 @@ const makePayment = async (req, res, next) => {
       });
     }
 
-    // Update wallet
-    const wallet = await Wallet.findOne({ userId: tx.userId });
+    // Update account
+    const account = await Account.findOne({ user: userId });
 
-    const newBalance = wallet.balance + tx.amount;
+    const newBalance = account.balance + tx.amount;
 
-    await wallet.updateOne({ balance: newBalance });
+    await account.updateOne({ balance: newBalance });
 
     await tx.updateOne({
       status: "SUCCESS",
-      balanceBefore: wallet.balance,
+      balanceBefore: account.balance,
       balanceAfter: newBalance,
     });
 

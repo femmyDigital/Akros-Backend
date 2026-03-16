@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const TransactionSchema = new mongoose.Schema(
   {
-    userId: {
+    user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       unique: true,
@@ -11,7 +11,7 @@ const TransactionSchema = new mongoose.Schema(
 
     type: {
       type: String,
-      enum: ["fund", "debit", "refund"],
+      enum: ["credit", "debit", "refund", "referral", "bonus"],
     },
 
     amount: {
@@ -26,19 +26,12 @@ const TransactionSchema = new mongoose.Schema(
 
     provider: {
       type: String,
-      default: "Monnify",
-    },
-
-    providerReference: {
-      type: String,
-      index: true,
+      default: "",
     },
 
     accountReference: { type: String },
-
-    meta: { type: Object },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 module.exports = mongoose.model("Transaction", TransactionSchema);

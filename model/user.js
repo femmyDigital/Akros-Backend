@@ -31,6 +31,15 @@ const UserSchema = new mongoose.Schema(
       required: true,
     },
 
+    accountNumber: {
+      type: String,
+      // required: true
+    },
+    bankName: {
+      type: String,
+      //  required: true
+    },
+
     verifyEmailToken: String,
     verifyEmailTokenExpires: Date,
 

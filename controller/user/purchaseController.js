@@ -1,4 +1,4 @@
-const Wallet = require("../../model/wallet");
+const Account = require("../../model/account");
 const Transaction = require("../../model/transaction");
 const Purchase = require("../../model/purchase");
 
@@ -7,24 +7,24 @@ const buyData = async (req, res, next) => {
   const { network, phoneNumber, amount, planCode } = req.body;
 
   try {
-    const wallet = await Wallet.findOne({ userId });
+    const account = await Account.findOne({ userId });
 
-    if (wallet.balance < amount) {
+    if (account.balance < amount) {
       const error = new Error("Insufficient balance");
       error.statusCode = 400;
       throw error;
     }
 
-    // Deduct wallet
-    const newBalance = wallet.balance - amount;
+    // Deduct account
+    const newBalance = account.balance - amount;
 
-    await wallet.updateOne({ balance: newBalance });
+    await account.updateOne({ balance: newBalance });
 
     const tx = await Transaction.create({
       userId,
       type: "DEBIT",
       amount,
-      balanceBefore: wallet.balance,
+      balanceBefore: account.balance,
       balanceAfter: newBalance,
       status: "SUCCESS",
       provider: "LOCAL_Automation",
