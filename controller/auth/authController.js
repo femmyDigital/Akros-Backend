@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { nanoid } = require("nanoid");
+const nanoid = (...args) =>
+  import("nanoid").then(({ nanoid }) => nanoid(...args));
 require("dotenv").config();
 const crypto = require("crypto");
 const User = require("../../model/user");
